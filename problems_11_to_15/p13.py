@@ -105,33 +105,11 @@ raw_string = """37107287533902102798797998220837590246510135740250
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690"""
 
-d = []
-
-lines = raw_string.split("\n")
-
-for i in range(0,len(lines)):
-	d.append([])
-	columns = lines[i]
-	for j in range(0,len(columns)):
-		d[i].append(int(columns[j]))
-
-n_rows = len(d)
-n_cols = len(d[0])
-
 if __name__ == "__main__":
 	start = time.time()
-	highest = int(''.join(['9' for i in range(0,10)]))
-	subtractor = 0
-	for col in range(0,11):
-		col_sum = 0
-		for row in range(0,n_rows):
-			col_sum += 9 - d[row][col]
-		subtractor += pow(10,10-col) * col_sum
-	print subtractor
-	subtractor = int(str(subtractor)[0:8])
-	sum_10 = highest - subtractor
+	# for line in raw_string.split():
+	# 	print float(line)
+	sum_10 = str(sum(( float(line) for line in raw_string.split() )))[:11]
 	elapsed = (time.time() - start)
-	print highest
-	print subtractor
 	print "Found %s after %s seconds" % (sum_10, elapsed)
 
