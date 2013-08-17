@@ -20,23 +20,30 @@ What is the value of the first triangle number to have over five hundred divisor
 
 import time
 
-def gen_traingle_numbers():
-	triangle, current_number = 1, 2
-	while True:
+def gen_traingle_numbers(n_triangles):
+	triangle, current_number, yielded = 1, 2, 0
+	while yielded < n_triangles:
 		yield triangle
 		triangle = triangle + current_number
 		current_number += 1
+		yielded += 1
 
-def n_factors(n):
-	i = 2
-	while i * i < n:
-		while n % i == 0:
-			n = n / i
-		i = i + 1
+def n_factors(n):    
+    result = set()
+    for i in range(1, int(n ** 0.5) + 1):
+        div, mod = divmod(n, i)
+        if mod == 0:
+            result |= {i, div}
+    return len(result)
 
 if __name__ == "__main__":
 	start = time.time()
-	for t in gen_traingle_numbers:
-		
-	elapsed = (time.time() - start)
-	print "Found %d after %s seconds" % (max_product, elapsed)
+	while True:
+		n_t = int(raw_input("Number of Triangles:"))
+		if n_t == 0:
+			break
+		for ind, t in enumerate(gen_traingle_numbers(n_t),1):
+			a,b,c = (ind, t, n_factors(t))
+			if c >= 500:
+				print "%d\t%d\t%s" % (a,b,c)
+			
