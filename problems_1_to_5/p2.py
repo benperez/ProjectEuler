@@ -8,8 +8,8 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 """
 
 def fib():
-    a,b = 1,2
-    while 1:
+    a,b = 0,1
+    while True:
         yield a
         a,b = b,a+b
 

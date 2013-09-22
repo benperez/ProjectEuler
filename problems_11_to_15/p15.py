@@ -8,9 +8,9 @@ import time
 
 def pascal(n):
 	pas = [[1],[1,1]]
-	for i in range(2,n+1):
+	for i in xrange(2,n+1):
 		pas.append([1])
-		for j in range(0,i-1):
+		for j in xrange(0,i-1):
 			pas[i].append(pas[i-1][j] + pas[i-1][j+1])
 		pas[i].append(1)
 	return pas
