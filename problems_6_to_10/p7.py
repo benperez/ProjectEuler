@@ -22,7 +22,7 @@ def gen_primes():
 		i += 2
 
 if __name__ == "__main__":
-	while True:
+	while False:
 		n = int(raw_input('Give amount: '))
 		start = time.time()
 		pgen = gen_primes()
