@@ -13,16 +13,21 @@ What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed 
 """
 
 from time import time
+import pdb
 
 if __name__ == "__main__":
     start = time()
-    spiral_sum, corners, period, current, max_value = 1, 4, 3, 1, 5 * 5
+    spiral_sum, corners, period, current, max_value = 0, 4, 2, 1, 1001 * 1001
+    # pdb.set_trace()
     while current <= max_value:
+        # add in the next corner number of the spiral sum
+        spiral_sum = spiral_sum + current
+        # find the next corner number of the spiral sum
         if corners > 0:
-            spiral_sum = current
             corners = corners - 1
         else:
-            corners = 4
+            # jumping to a new, wider layer
+            corners = 3
             period = period + 2
         current = current + period
     elapsed = time() - start
