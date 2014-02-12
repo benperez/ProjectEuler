@@ -13,7 +13,7 @@ char_vals = { l: i for i, l in enumerate('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 1) }
 if __name__ == "__main__":
 	start = time()
 	score_sum = 0
-	with open('names.txt') as f:
+	with open('data/names.txt') as f:
 		names = sorted(f.readline().replace('"','').split(','))
 		score_sum = sum( ( sum( ( char_vals[l] for l in name ) ) * index for index, name in enumerate(names, 1) ) )
 	elapsed = time() - start
