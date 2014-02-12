@@ -1,7 +1,7 @@
 import time
 
 # parse the input and build an array of indices
-input = [ int(n) for line in open('triangle.txt') for n in line.split() ]
+input = [ int(n) for line in open('data/triangle.txt') for n in line.split() ]
 # generate a topological ordering of nodes
 t_orderings, current = [], 0
 while current * (current + 1) / 2 <= len(input):
