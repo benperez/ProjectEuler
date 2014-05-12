@@ -11,14 +11,32 @@ The sum of these numbers is 1634 + 8208 + 9474 = 19316.
 Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
 """
 
+from itertools import ifilter
 from time import time
 
-if __name__ == "__main__":
-	start = time()
+def timed(func):
+	def wrapper(*args, **kwargs):
+		start = time()
+		result = func(*args,**kwargs)
+		elapsed = time() - start
+		print "%s found %s after %s seconds" % (func.func_name, result, elapsed)
+		return result
+
+	return wrapper
+
+@timed
+def imperative():
 	digit_fifths = set()
 	for i in xrange(2,236196):
 		if i == sum( [ pow(int(c), 5) for c in str(i) ] ):
 			digit_fifths.add(i)
-	answer = sum(digit_fifths)
-	elapsed = time() - start
-	print "Found %s after %s seconds" % (answer, elapsed)
+	return sum(digit_fifths)
+
+@timed
+def functional():
+	digit_powers = lambda n: sum( pow(int(c), 5) for c in str(n) ) == n
+	return sum(ifilter(digit_powers, xrange(2,236196)))
+
+if __name__ == "__main__":
+	functional()
+	imperative()
